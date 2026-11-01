@@ -7,7 +7,8 @@ public class _04_LC_200_Number_of_Islands {
                             {'1','1','0','0','0'},
                             {'0','0','0','0','0'}  } ;
  
-         System.out.println(numIslands(grid));  
+        //  System.out.println(numIslands(grid));  // LC 
+        System.out.println(numIslands(grid));
     }   
 
       public static int numIslands(char[][] grid){
@@ -18,7 +19,8 @@ public class _04_LC_200_Number_of_Islands {
          for(int i=0;i<grid.length;i++){
             for(int j=0;j<grid[0].length;j++){
                 if(grid[i][j]=='1'){
-                    dfs(grid,i,j);
+                    // dfs(grid,i,j); LC
+                     dfsGFG(grid, i, j);
                     count++;
                 }
             }
@@ -26,7 +28,9 @@ public class _04_LC_200_Number_of_Islands {
          return count;
       }
 
+
       public static void dfs(char[][] grid, int i, int j) {
+        // This is for LC because in LC only 4 directions are require to move or travel
          if(i<0 || i>=grid.length  ||  j<0  || j>=grid[0].length  || grid[i][j] =='0') return;
 
          grid[i][j]= '0';
@@ -36,4 +40,21 @@ public class _04_LC_200_Number_of_Islands {
          dfs(grid, i -1, j);
          dfs(grid, i, j -1);
       }
+
+    
+      public static void dfsGFG(char[][] grid, int i, int j) {
+        if(i<0 || i>=grid.length || j<0 || j>= grid[0].length || grid[i][j]== 'W') return ;
+
+            grid[i][j]= 'W';
+
+            dfsGFG(grid, i +1, j); //
+            dfsGFG(grid, i, j +1);  //
+            dfsGFG(grid, i -1, j);
+            dfsGFG(grid, i, j -1);
+            dfsGFG(grid, i +1, j +1);
+            dfsGFG(grid, i -1, j +1);
+            dfsGFG(grid, i +1, j -1);
+            dfsGFG(grid, i -1, j -1);
+    }
+
 }
